@@ -1,0 +1,34 @@
+<app-navigation></app-navigation>
+
+<form class="sky-padding-even-md" novalidate [formGroup]="form!">
+  <div class="container">
+    <div class="row"></div>
+    <div class="col-sm col-md col-lg">
+      <sky-input-box data-sky-id="forecast-city"
+        helpPopoverContent="Enter name of city or country for the location forecast"
+        hintText="Choose a city from the list" labelText="Forecast city name" stacked>
+        <sky-lookup formControlName="location" selectMode="single" (searchAsync)="searchAsync($event)"
+          [searchResultTemplate]="itemTemplate" />
+      </sky-input-box>
+    </div>
+  </div>
+</form>
+
+<app-weather-card [selectedLocation]="selectedLocation"></app-weather-card>
+
+<ng-template let-item="item" #itemTemplate>
+  <span class="lookup-demo-template-item">
+    <strong class="lookup-demo-template-name">{{ item.name }}</strong><br />
+    <span class="lookup-demo-template-formal-name">
+      <b>Country:</b> {{item.country}}
+      <b>, </b>
+      <b class="p-1">State:</b> {{ item.admin1 || 'Not Available' }}
+      <b>, </b>
+      <b class="p-1">TimeZone:</b> {{ item.timezone }}
+      <b>, </b>
+      <b class="p-1 ">Latitude:</b> {{ item.latitude }}
+      <b>, </b>
+      <b class="p-1">Longitude:</b> {{ item.longitude }}
+    </span>
+  </span>
+</ng-template>

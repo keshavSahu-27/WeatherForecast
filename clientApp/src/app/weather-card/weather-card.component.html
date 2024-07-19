@@ -1,0 +1,94 @@
+<div *ngIf="weatherForeCastData; else noInfo" class="container">
+    <sky-wait data-sky-id="wait" [isWaiting]="isWaiting"> </sky-wait>
+    <sky-fluid-grid gutterSize="medium" [disableMargin]="true">
+        <sky-row>
+            <sky-column [screenMedium]="4" [screenSmall]="12"
+                *ngFor="let item of weatherForeCastData?.daily?.time, let i = index">
+                <sky-box class="sky-margin-stacked-xl">
+                    <sky-box-header>
+                        <h2 class="sky-font-heading-2">Forecast Details</h2>
+                    </sky-box-header>
+                    <sky-box-content>
+                        <sky-description-list mode="vertical">
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Date
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{item | skyDate: 'longDate'}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Max Temperature {{weatherForeCastData?.dailyUnits?.temperature2mMax}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.temperature2mMax?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Min Temperature {{weatherForeCastData?.dailyUnits?.temperature2mMin}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.temperature2mMin?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Max Apparent Temperature(feels like)
+                                    {{weatherForeCastData?.dailyUnits?.apparentTemperatureMax}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.apparentTemperatureMax?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Min Apparent Temprature(feels like)
+                                    {{weatherForeCastData?.dailyUnits?.apparentTemperatureMin}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.apparentTemperatureMin?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Precipitation ({{weatherForeCastData?.dailyUnits?.precipitationSum}})
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.precipitationSum?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Precipitation Probablity
+                                    {{weatherForeCastData?.dailyUnits?.precipitationProbabilityMax}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.precipitationProbabilityMax?.at(i)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                            <sky-description-list-content>
+                                <sky-description-list-term>
+                                    Avergae Humidity {{weatherForeCastData?.dailyUnits?.averageRelativeHumidity2m}}
+                                </sky-description-list-term>
+                                <sky-description-list-description>
+                                    {{weatherForeCastData?.daily?.averageRelativeHumidity2m?.at(i)?.toFixed(3)}}
+                                </sky-description-list-description>
+                            </sky-description-list-content>
+                        </sky-description-list>
+                    </sky-box-content>
+                </sky-box>
+            </sky-column>
+        </sky-row>
+    </sky-fluid-grid>
+</div>
+
+<ng-template #noInfo>
+    <div class="container">
+        <sky-alert data-sky-id="alert-demo" alertType=info [closeable]="false" descriptionType="important-info">
+            Please enter the city above to see the weather forecast.
+        </sky-alert>
+    </div>
+</ng-template>

@@ -1,0 +1,1 @@
+export const baseLocation = 'https://localhost:7291'
