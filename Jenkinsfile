@@ -5,7 +5,7 @@ pipeline {
         stage('Initialize') {
             steps {
                 script {
-                    sh 'Pipeline init'
+                    sh echo 'Pipeline init'
                 }
             }
         }
