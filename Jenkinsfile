@@ -9,12 +9,6 @@ pipeline {
                 }
             }
         }
-        
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/keshavSahu-27/WeatherForecast.git'
-            }
-        }
 
         stage('Build .NET') {
             steps {
