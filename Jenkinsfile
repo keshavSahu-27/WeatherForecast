@@ -1,5 +1,5 @@
 pipeline {
-     agent { label 'myJenkinsAgent' }
+     agent { label 'cloud' }
 
     stages {
         stage('Initialize') {
