@@ -13,7 +13,7 @@ pipeline {
         stage('Build .NET') {
             steps {
                 script {
-                    sh 'dotnet restore'
+                 
                     sh 'dotnet build --configuration Release'
                     sh 'dotnet publish --configuration Release --output out'
                 }
